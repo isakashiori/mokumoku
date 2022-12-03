@@ -41,7 +41,6 @@ RSpec.describe "Profiles", type: :system do
         login(new_user)
         visit root_path
         expect(page).to have_content(event.title)
-
         click_link event.user.name
 
         expect(page).to have_content(event.user.name)
