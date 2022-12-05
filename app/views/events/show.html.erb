@@ -58,7 +58,6 @@
           <div class="d-flex align-items-center gap-3 mb-3">
             <%= image_tag @event.user.decorate.avatar, class: 'rounded-circle avatar-lg' %>
             <%= link_to @event.user.name, mypage_profile_path(user_id: @event.user.id) %>
-            <%= link_to "フォローする", "#" %>
           </div>
           <div class="p-3 bg-light">
             イベント数

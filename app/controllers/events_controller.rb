@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_action :require_login
 
   def index
-    @q = current_user.attend_events.ransack(params[:q])
+    @q = Event.future.ransack(params[:q])
     @events = @q.result(distinct: true).includes(:bookmarks, :prefecture, user: { avatar_attachment: :blob })
                 .order(created_at: :desc).page(params[:page])
   end

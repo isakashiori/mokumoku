@@ -29,7 +29,7 @@
         Edit your personal information and address.
       </p>
       <!-- Form -->
-      <%= form_with(model: @user, url: mypage_profile_path) do |f| %>
+      <%= form_with(model: @user, url: mypage_profile_path(user_id: @user.id)) do |f| %>
         <div class="mb-3">
           <%= f.label :email, class: 'form-label' %>
           <%= f.email_field :email, class: 'form-control', required: true, placeholder: 'Email' %>
@@ -50,6 +50,11 @@
           <!-- Button -->
           <%= f.submit class: 'btn btn-primary' %>
         </div>
+      <% end %>
+      <% if @user.is_followed_by?(current_user) %>
+        <%= link_to 'フォローを外す', user_relationships_path(@user), method: :delete %>
+      <% else %>
+        <%= link_to 'フォローする', user_relationships_path(@user), method: :post %>
       <% end %>
     </div>
   </div>

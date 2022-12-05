@@ -10,11 +10,20 @@ class Mypage::ProfilesController < Mypage::BaseController
   end
 
   def update
-    @user = User.find(current_user.id)
-    if @user.update(profile_params)
-      redirect_to mypage_profile_path, success: 'プロフィールを更新しました'
+    if params[:user_id] == nil
+      @user = User.find(current_user.id)
+      if @user.update(profile_params)
+        redirect_to mypage_profile_path, success: 'プロフィールを更新しました'
+      else
+        render :show
+      end
     else
-      render :show
+      @user = User.find(params[:user_id])
+      if @user.update(profile_params)
+        redirect_to mypage_profile_path(user_id: params[:user_id]), success: 'プロフィールを更新しました'
+      else
+        render :show
+      end
     end
   end
 
