@@ -29,7 +29,7 @@
         Edit your personal information and address.
       </p>
       <!-- Form -->
-      <%= form_with(model: @user, url: mypage_profile_path(user_id: @user.id)) do |f| %>
+      <%= form_with(model: @user, url: mypage_profile_path) do |f| %>
         <div class="mb-3">
           <%= f.label :email, class: 'form-label' %>
           <%= f.email_field :email, class: 'form-control', required: true, placeholder: 'Email' %>
