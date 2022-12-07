@@ -18,7 +18,12 @@ class Mypage::ProfilesController < Mypage::BaseController
           render :show
         end
     else
-      テスト
+      @user = User.find(params[:user_id])
+        if @user.update(profile_params)
+          redirect_to mypage_profile_path(user_id: params[:user_id])
+        else
+          redirect_to request.referrer
+        end
     end
   end
 
