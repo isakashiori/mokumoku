@@ -2,28 +2,15 @@
 
 class Mypage::ProfilesController < Mypage::BaseController
   def show
-    if params[:user_id] == nil
-      @user = current_user
-    else
-      @user = User.find(params[:user_id])
-    end
+    @user = current_user
   end
 
   def update
-    if params[:user_id] == nil
-      @user = User.find(current_user.id)
-        if @user.update(profile_params)
-          redirect_to mypage_profile_path, success: 'プロフィールを更新しました'
-        else
-          render :show
-        end
+    @user = User.find(current_user.id)
+    if @user.update(profile_params)
+      redirect_to mypage_profile_path, success: 'プロフィールを更新しました'
     else
-      @user = User.find(params[:user_id])
-        if @user.update(profile_params)
-          redirect_to mypage_profile_path(user_id: params[:user_id])
-        else
-          redirect_to request.referrer
-        end
+      render :show
     end
   end
 
@@ -31,6 +18,6 @@ class Mypage::ProfilesController < Mypage::BaseController
   private
 
   def profile_params
-    params.require(:user).permit(:name, :avatar, :email, :profile, :hobby)
+    params.require(:user).permit(:name, :avatar, :hobby, :profile)
   end
 end
