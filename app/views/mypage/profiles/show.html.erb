@@ -38,10 +38,23 @@
           <%= f.label :name, class: 'form-label' %>
           <%= f.text_field :name, class: 'form-control', placeholder: 'らんてくん' %>
         </div>
+        <div class="mb-3">
+          <%= f.label :hobby, class: 'form-label' %>
+          <%= f.text_field :hobby, class: 'form-control', placeholder: 'Hobby' %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :profile, class: 'form-label' %>
+          <%= f.text_field :profile, class: 'form-control', placeholder: 'Plofile' %>
+        </div>
         <div class="col-12">
           <!-- Button -->
           <%= f.submit class: 'btn btn-primary' %>
         </div>
+      <% end %>
+      <% if @user.is_followed_by?(current_user) %>
+        <%= link_to 'フォローを外す', user_relationships_path(@user), method: :delete %>
+      <% else %>
+        <%= link_to 'フォローする', user_relationships_path(@user), method: :post %>
       <% end %>
     </div>
   </div>

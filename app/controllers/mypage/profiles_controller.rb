@@ -14,9 +14,10 @@ class Mypage::ProfilesController < Mypage::BaseController
     end
   end
 
+
   private
 
   def profile_params
-    params.require(:user).permit(:name, :avatar)
+    params.require(:user).permit(:name, :avatar, :hobby, :profile)
   end
 end
